@@ -105,7 +105,7 @@ console.log("Recent items array", recentItems);
 
 ```
 
-#### clearRecentItems ####
+### clearRecentItems ###
 
 In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
 
