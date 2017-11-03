@@ -50,6 +50,10 @@ For example usage please checkout the [MobileCaddy KitchenSink App](https://gith
 
 Sets the configuration information of the recent items. This call is done in the app.js file, thus it can be updated by the developer easily.
 
+#### Parameters ####
+
+confObject : Object. Contains the config information of the recent items.
+
 #### Example ####
 
 In this case, the max number of recent items would be fifty and the recent items will be saved in localStorage, instead of being saved in the database, encrypted.
@@ -78,6 +82,11 @@ RecentItemsService.setConfig({
 
 Adds an item to the recent items list.
 
+#### Parameters ####
+
+type : String. Represents the type of the new item, e.g. "Account".
+object : Object. It is the object that will be added to the recent items list.
+
 #### Example ####
 
 ```
@@ -95,12 +104,22 @@ console.log("Recent items array", localStorage.getItem("recentItems"));
 
 Retrieves an array of recent items.
 
+#### Parameters ####
+
+type : String. Represents the type of the items, e.g. "Account".
+amount : Number. Refers to the number of recent items that the controller wants to receive. It's optional.
+config : Boolean. Defines if the user wants to get config information about the recent items. It's optional.
+
+#### Returns ####
+
+An array of recent item objects.
+
 #### Example ####
 
 With this call we would get the two most recent items of type Account that don't include configuration information, such as icon and href.
 
 ```
-var recentItems = RecentItemsService.getRecentItems('Account', 2, false);
+var recentItems = RecentItemsService.getRecentItems('Account', 2);
 console.log("Recent items array", recentItems);
 
 ```
@@ -108,6 +127,10 @@ console.log("Recent items array", recentItems);
 ### clearRecentItems ###
 
 In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
+
+#### Parameters ####
+
+type : String. Represents the type of the items, e.g. "Account".
 
 #### Example ####
 

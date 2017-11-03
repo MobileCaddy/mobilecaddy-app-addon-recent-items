@@ -131,7 +131,7 @@
 
     /**
     * @function getRecentItems
-    * @param {String} type the type of the item, e.g. "Account". It's optional
+    * @param {String} type the type of the items, e.g. "Account". It's optional
     * @param {Number} amount the number of recent items that the controller
     * wants to receive. It's optional
     * @param {Boolean} config defines if the user wants to get config
@@ -263,7 +263,8 @@
 
     /**
     * @function clearRecentItems
-    * @param {String} type the type of the item, e.g. "Account". It's optional
+    * @param {String} type the type of the items to delete, e.g. "Account".
+    * It's optional
     * @description It removes the recentItems from localStorage
     **/
     function clearRecentItems(type){
