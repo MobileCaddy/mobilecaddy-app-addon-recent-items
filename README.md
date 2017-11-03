@@ -133,7 +133,7 @@ In this version, it deletes the list of recent items from localStorage. In the r
 
 #### Parameters ####
 
-type : String. Represents the type of the items, e.g. "Account".
+type : String. Represents the type of the items, e.g. "Account". It's optional.
 
 #### Example ####
 
