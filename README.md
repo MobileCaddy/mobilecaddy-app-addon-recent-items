@@ -17,7 +17,7 @@ The installation will include the tasks of moving the relevant scripts into the 
 
 ## Setup
 
-* Ensure that the MobileCaddy _appDataUtils_ is exposed in your project's _www/js/services/service.module.js_. It should contain these lines;
+* Ensure that the MobileCaddy _appDataUtils_ is exposed in your project's _www/js/services/service.module.js_. It should contain these lines.
 
 ```
 angular.module('appDataUtils', [])
@@ -26,7 +26,7 @@ angular.module('appDataUtils', [])
 });
 ```
 
-And the appDataUtils should be included in this line also;
+And the appDataUtils should be included in this line also.
 
 ```
 angular.module('starter.services', ['underscore', 'devUtils', 'vsnUtils',
@@ -76,7 +76,7 @@ RecentItemsService.setConfig({
 
 ### addRecentItem ###
 
-Adds an item to the recent items list
+Adds an item to the recent items list.
 
 #### Example ####
 
@@ -93,11 +93,11 @@ console.log("Recent items array", localStorage.getItem("recentItems"));
 
 ### getRecentItems ###
 
-Retrieves an array of recent items
+Retrieves an array of recent items.
 
 #### Example ####
 
-With this call we would get the two most recent items of type Account that don't include configuration information, such as icon and href
+With this call we would get the two most recent items of type Account that don't include configuration information, such as icon and href.
 
 ```
 var recentItems = RecentItemsService.getRecentItems('Account', 2, false);
@@ -108,6 +108,8 @@ console.log("Recent items array", recentItems);
 #### clearRecentItems ####
 
 In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
+
+#### Example ####
 
 ```
 
