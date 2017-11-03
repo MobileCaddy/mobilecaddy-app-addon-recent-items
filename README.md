@@ -85,6 +85,7 @@ Adds an item to the recent items list.
 #### Parameters ####
 
 type : String. Represents the type of the new item, e.g. "Account".
+
 object : Object. It is the object that will be added to the recent items list.
 
 #### Example ####
@@ -107,7 +108,9 @@ Retrieves an array of recent items.
 #### Parameters ####
 
 type : String. Represents the type of the items, e.g. "Account".
+
 amount : Number. Refers to the number of recent items that the controller wants to receive. It's optional.
+
 config : Boolean. Defines if the user wants to get config information about the recent items. It's optional.
 
 #### Returns ####
