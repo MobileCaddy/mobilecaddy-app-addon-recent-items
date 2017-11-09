@@ -4,7 +4,7 @@
 
 AngularJS service used to add, retrieve and update recent items that the user has viewed within a MobileCaddy application.
 
-[![Build Status](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-mcrest.svg)](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-mcrest)
+[![Build Status](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-recent-items.svg)](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-recent-items)
 
 
 ## Installation
@@ -35,28 +35,7 @@ angular.module('starter.services', ['underscore', 'devUtils', 'vsnUtils',
 
 ## Configuring
 
-You can configure the API version to be used like this. If no API version is set, the default shall be used. This can be run in the `.run` in the _app.js_. The format of the version number is strict, and the call will return false if the supplied value is not valid.
-
-```
-RecentItemsService.config({apiVersion: "v41.0"});
-```
-
-## Calls Available
-
-For example usage please checkout the [MobileCaddy KitchenSink App](https://github.com/MobileCaddy/ionic-kitchen-sink)
-
-
-### setConfig ###
-
-Sets the configuration information of the recent items. This call is done in the app.js file, thus it can be updated by the developer easily.
-
-#### Parameters ####
-
-confObject : Object. Contains the config information of the recent items.
-
-#### Example ####
-
-In this case, the max number of recent items would be fifty and the recent items will be saved in localStorage, instead of being saved in the database, encrypted.
+You can set the configuration information of the recent items, such as the maximum number of items, if they will be saved in localStorage or encrypted in the database, the type of items, among other details. This can be run in the `.run` in the _app.js_ file, thus it can be updated by the developer easily.
 
 ```
 RecentItemsService.setConfig({
@@ -77,6 +56,9 @@ RecentItemsService.setConfig({
   });
 
 ```
+
+## Calls Available
+
 
 ### addRecentItem ###
 
@@ -131,7 +113,7 @@ console.log("Recent items array", recentItems);
 
 In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
 
-#### Parameters #### 
+#### Parameters ####
 
 type : String. Represents the type of the items, e.g. "Account". It's optional.
 
