@@ -131,7 +131,7 @@ console.log("Recent items array", recentItems);
 
 In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
 
-#### Parameters ####
+#### Parameters #### 
 
 type : String. Represents the type of the items, e.g. "Account". It's optional.
 
