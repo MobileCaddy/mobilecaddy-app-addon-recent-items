@@ -4,6 +4,16 @@ describe('RecentItemsService Unit Tests', function(){
 
   beforeEach(module('starter.services'));
 
+  var loggerMock;
+
+  beforeEach(function(){
+    loggerMock = jasmine.createSpyObj('logger', ['log', 'error']);
+
+    module(function($provide) {
+      $provide.value('logger', loggerMock);
+    });
+  });
+
   beforeEach(inject(function(_RecentItemsService_){
     RecentItemsService = _RecentItemsService_;
 

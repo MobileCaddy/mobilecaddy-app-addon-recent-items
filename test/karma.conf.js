@@ -22,6 +22,7 @@ module.exports = function(config) {
     files: [
       '../node_modules/angular/angular.js',
       '../node_modules/angular-mocks/angular-mocks.js',
+      '../node_modules/underscore/underscore-min.js',
       'app.js',
       '../js/*.js',
       'specs/*.*.js'
