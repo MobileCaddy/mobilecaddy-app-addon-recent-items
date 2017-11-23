@@ -35,7 +35,7 @@
     * recent items
     * @description Sets three global variables, the first for the max number of
     * recent items, the second to define if the items will be stored in the
-    * databse (encrypted) or in local storage and another for the config
+    * database (encrypted) or in local storage and the third for the config
     * information
     **/
     function setConfig(confObject){
@@ -72,7 +72,7 @@
     * @function getMaxItems
     * @return {Number} maximum number of items
     * @description Gets the maximum number of items that can be in the recent
-    * items list set by the setMaxItems function
+    * items list
     **/
     function getMaxItems(){
       return maxItems;
@@ -88,7 +88,7 @@
     * be deleted.
     **/
     function addRecentItem(type, object){
-      var maxRecentItems = maxItems;
+      var maxRecentItems;
       if (maxItems === null) {
         maxRecentItems = 10;
         maxItems = 10;
@@ -218,12 +218,12 @@
           //If at least one idName wasn't found, set the status message
           //so that the developer knows what happened
           item.status = "At least one id of the href was not found";
-          return;
+          break;
         }
       }
-      //If the Id values were found in the object, then we form
-      //the href String using the indexOfIds and the values in
-      //idValues
+      //If the status wasn't set, it means the Id values were found,
+      //so we form the href String using the indexOfIds and the values
+      //in idValues
       if (!item.status){
         for (let i = 0; i < indexOfIds.length; i++){
           splitHref[indexOfIds[i]] = idValues[i];
@@ -241,8 +241,9 @@
 
     /**
     * @function findId
-    * @param {Object} object item object from the database
-    * @param {String} idName name of key containing an Id, e.g.: AccountId
+    * @param {Object} object item object from the database or localStorage
+    * @param {String} idName name of the placeholder containing an Id,
+    * e.g.: AccountId
     * @return {String} value of the Id placeholder in the item object
     * @description Auxiliar function that searches through the item object,
     * to try to find the value of the corresponding idName
