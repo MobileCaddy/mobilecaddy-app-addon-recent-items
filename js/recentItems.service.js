@@ -13,12 +13,13 @@
   .module('starter.services')
   .factory('RecentItemsService', RecentItemsService);
 
-  RecentItemsService.$inject = ['logger'];
+  RecentItemsService.$inject = [];
 
-  function RecentItemsService(logger){
+  function RecentItemsService(){
+    var recentItemsKey = 'recentItems';
     var maxItems;
     var encryptedStore;
-    var config;
+    var tableConfig;
     return {
       setConfig: setConfig,
       getConfigForType: getConfigForType,
@@ -40,8 +41,8 @@
     **/
     function setConfig(confObject){
       maxItems = confObject.maxItems;
-      encryptedStore = confObject.encrypted;
-      config = confObject.config;
+      encryptedStore = (confObject.encrypted) ? confObject.encrypted: false;
+      tableConfig = confObject.tables;
     }
 
     /**
@@ -52,7 +53,7 @@
     * @description Returns the config information for a recent item type
     **/
     function getConfigForType(type){
-      var configInfo = _.filter(config,
+      var configInfo = _.filter(tableConfig,
         function(eachConfig){
           return eachConfig.name == type;
         });
@@ -75,7 +76,11 @@
     * items list
     **/
     function getMaxItems(){
-      return maxItems;
+      if (maxItems === null) {
+        return 10;
+      } else {
+        return maxItems;
+      }
     }
 
     /**
@@ -88,14 +93,9 @@
     * be deleted.
     **/
     function addRecentItem(type, object){
-      var maxRecentItems;
-      if (maxItems === null) {
-        maxRecentItems = 10;
-        maxItems = 10;
-      } else {
-        maxRecentItems = maxItems;
-      }
-      if (encryptedStore === false){
+      var maxRecentItems = getMaxItems();
+
+      // if (encryptedStore === false){
         var recentItems = JSON.parse(localStorage.getItem("recentItems"));
         if(recentItems === null){
           recentItems = [];
@@ -125,7 +125,7 @@
           recentItems.shift();
         }
         localStorage.setItem("recentItems", JSON.stringify(recentItems));
-      }
+      // }
     }
 
 
@@ -270,7 +270,12 @@
     **/
     function clearRecentItems(type){
       if (!type){
-        localStorage.removeItem('recentItems');
+        localStorage.removeItem(recentItemsKey);
+      } else {
+        var filteredRecentItems = JSON.parse(localStorage.getItem(recentItemsKey)).filter(item =>{
+          return (item.type != type);
+        });
+        localStorage.setItem(recentItemsKey, JSON.stringify(filteredRecentItems));
       }
     }
   }
