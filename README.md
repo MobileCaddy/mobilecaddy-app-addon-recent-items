@@ -23,7 +23,7 @@ You can set the configuration information of the recent items, such as the maxim
 RecentItemsService.setConfig({
     maxItems: 50,
     encrypted: false,
-    config: [
+    tables: [
       {
         name: 'Account',
         icon: 'ion-folder',
@@ -39,6 +39,33 @@ RecentItemsService.setConfig({
 
 ```
 
+### Syntax
+```
+setConfig( { maxItems, encrypted, tables } );
+```
+
+### Parameters
+
+#### maxItems Optional
+
+How many recent items to store. Defaults to 10.
+
+#### encrypted Optional
+
+Whether or not to use the encrypted database to store the recent items. If _false_, stored in localStorage. Defaults to *false*. **Note: Not yet supported**.
+
+#### tables
+
+Array of objects configuring each table to be included in the global search, thus;
+```
+[{
+  name,   // string:
+  icon,   // string: Ionicon to be used in enriched output
+  href    // string: State URL to be used for direct record access in enriched output.
+}]
+```
+
+
 ## Calls Available
 
 
@@ -46,11 +73,16 @@ RecentItemsService.setConfig({
 
 Adds an item to the recent items list.
 
+#### Syntax
+```
+addRecentItem( type, object );
+```
+
 #### Parameters ####
 
-type : String. Represents the type of the new item, e.g. "Account".
+**type** : String. Represents the type of the new item, e.g. "Account".
 
-object : Object. It is the object that will be added to the recent items list.
+**object** : Object. It is the object that will be added to the recent items list.
 
 #### Example ####
 
@@ -61,7 +93,6 @@ var object = {
 };
 
 RecentItemsService.addRecentItem('Account', object);
-console.log("Recent items array", localStorage.getItem("recentItems"));
 
 ```
 
@@ -69,13 +100,18 @@ console.log("Recent items array", localStorage.getItem("recentItems"));
 
 Retrieves an array of recent items.
 
+#### Syntax
+```
+getRecentItems( type, amount, config );
+```
+
 #### Parameters ####
 
-type : String. Represents the type of the items, e.g. "Account".
+**type** : String | NULL . Represents the type of the items, e.g. "Account". *NULL* can be supplied.
 
-amount : Number. Refers to the number of recent items that the controller wants to receive. It's optional.
+**amount** : Number. Refers to the number of recent items that the controller wants to receive. It's optional.
 
-config : Boolean. Defines if the user wants to get config information about the recent items. It's optional.
+**config** : Boolean. Defines if the user wants to get config information about the recent items. It's optional.
 
 #### Returns ####
 
@@ -93,16 +129,20 @@ console.log("Recent items array", recentItems);
 
 ### clearRecentItems ###
 
-In this version, it deletes the list of recent items from localStorage. In the recent future we will include the possibility to delete from the database as well.
+#### Syntax
+```
+clearRecentItems( type );
+```
 
 #### Parameters ####
 
-type : String. Represents the type of the items, e.g. "Account". It's optional.
+**type** : String. Represents the type of the items, e.g. "Account". Optional.
 
-#### Example ####
+#### Examples ####
 
 ```
-
 RecentItemsService.clearRecentItems();
+
+RecentItemsService.clearRecentItems('Account');
 
 ```

@@ -10,7 +10,10 @@ module.exports = function(grunt) {
 
     jshint: {
       myFiles: [ 'js/*.*.js' ],
-      test:    [ 'test/specs/*.*.js' ]
+      test:    [ 'test/specs/*.*.js' ],
+      options: {
+        esversion: 6
+      }
     },
 
     watch: {
