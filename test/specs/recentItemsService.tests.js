@@ -15,7 +15,7 @@ describe('RecentItemsService Unit Tests', function(){
       $provide.value('logger', loggerMock);
     });
 
-  })
+  });
 
   beforeEach(inject(function(_RecentItemsService_){
     RecentItemsService = _RecentItemsService_;
@@ -179,7 +179,7 @@ describe('RecentItemsService Unit Tests', function(){
       RecentItemsService.addRecentItem('Account', {'Id': '01'});
       RecentItemsService.addRecentItem('Contact', {'Id': '02'});
       RecentItemsService.clearRecentItems('Contact');
-      let rItems = JSON.parse(localStorage.getItem('recentItems'))
+      let rItems = JSON.parse(localStorage.getItem('recentItems'));
       expect(rItems.length).toBe(1);
       expect(rItems[0].type).toBe('Account');
     });
