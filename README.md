@@ -7,6 +7,12 @@ AngularJS service used to add, retrieve and update recent items that the user ha
 [![Build Status](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-recent-items.svg)](https://travis-ci.org/MobileCaddy/mobilecaddy-app-addon-recent-items)
 
 
+## Roadmap
+
+- Encrypted DB support
+- Updating recent item objects following `devUtils.updateRecords()` and sync completion processes.
+- Remove recent item entries when they are deleted from localDB, or maked as *deleted* following sync completion processes.
+
 ## Installation
 
 ```
