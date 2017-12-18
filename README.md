@@ -152,3 +152,51 @@ RecentItemsService.clearRecentItems();
 RecentItemsService.clearRecentItems('Account');
 
 ```
+
+### contains ###
+
+Looks for an object in the recentItems store for a specific Id. Returns the object if it exists, else returns false.
+
+#### Syntax
+```
+contains( id );
+```
+
+#### Parameters ####
+
+**id** : String. Represents the Id of the object being searched for.
+
+#### Returns ####
+
+The matching object, or false if not found.
+
+#### Examples ####
+
+```
+RecentItemsService.contains("AB123CD456EF789");
+
+```
+
+### removeItem ###
+
+Removes an item from the recentItems for a specific Id
+
+#### Syntax
+```
+removeItem( id );
+```
+
+#### Parameters ####
+
+**id** : String. Represents the Id of the object being searched for.
+
+#### Returns ####
+
+true if object was found, false if not.
+
+#### Examples ####
+
+```
+RecentItemsService.removeItem("AB123CD456EF789");
+
+```
