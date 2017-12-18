@@ -1,6 +1,6 @@
 {
   "name": "mobilecaddy-app-addon-recent-items",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "AngularJS service used to add, retrieve and update recent items that the user has viewed within a MobileCaddy application.",
   "main": "index.js",
   "scripts": {

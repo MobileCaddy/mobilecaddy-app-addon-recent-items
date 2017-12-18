@@ -5,6 +5,11 @@
 *
 * @description Factory to add, retrieve and update recent items that the user
 * has viewed in the app
+*
+* = = = = = = = = = = = = = = = = = = = = =
+* DO NOT CHANGE THE FOLLOWING VERSION LINE
+* mcrest_service_vsn:0.1.0
+* = = = = = = = = = = = = = = = = = = = = =
 */
 (function() {
   'use strict';
