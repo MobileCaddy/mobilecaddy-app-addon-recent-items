@@ -94,6 +94,16 @@ describe('RecentItemsService Unit Tests', function(){
       localStorage.removeItem('recentItems');
     }));
 
+    it('should get empty array if no recentItems with no type specified', function(){
+      var items = RecentItemsService.getRecentItems();
+      expect(items.length).toBe(0);
+    });
+
+    it('should get empty array if no recentItems with type specified', function(){
+      var items = RecentItemsService.getRecentItems('Account');
+      expect(items.length).toBe(0);
+    });
+
     it('should get the recent items of the specified type. Amount is not specified', function(){
       RecentItemsService.addRecentItem('Account', {'Id': '01'});
       RecentItemsService.addRecentItem('Account', {'Id': '02'});
@@ -186,4 +196,65 @@ describe('RecentItemsService Unit Tests', function(){
 
   });
 
+    /* SUCCESS ADD RECENT ITEM */
+
+  describe('removeItem Success', function(){
+
+    beforeEach(inject(function () {
+      localStorage.setItem('recentItems', JSON.stringify([
+          {object: {'Id': '01'}, type: 'Account'},
+          {object: {'Id': '02'}, type: 'Account'},
+          {object: {'Id': '03'}, type: 'Account'}
+        ]));
+    }));
+
+    it('should remove first recentItem', function(){
+      var res = RecentItemsService.removeItem('01');
+      expect(res).toBe(true);
+      expect(JSON.parse(localStorage.getItem('recentItems')).length).toBe(2);
+      expect(JSON.parse(localStorage.getItem('recentItems'))[0].object.Id).toBe('02');
+      expect(JSON.parse(localStorage.getItem('recentItems'))[1].object.Id).toBe('03');
+    });
+
+
+    it('should remove middle recentItem', function(){
+      var res = RecentItemsService.removeItem('02');
+      expect(res).toBe(true);
+      expect(JSON.parse(localStorage.getItem('recentItems')).length).toBe(2);
+      expect(JSON.parse(localStorage.getItem('recentItems'))[0].object.Id).toBe('01');
+      expect(JSON.parse(localStorage.getItem('recentItems'))[1].object.Id).toBe('03');
+    });
+
+
+    it('should return false for non-match', function(){
+      var res = RecentItemsService.removeItem('duff');
+      expect(res).toBe(false);
+      expect(JSON.parse(localStorage.getItem('recentItems')).length).toBe(3);
+    });
+
+  });
+
+  /* SUCCESS CONTAINS RECENT ITEM */
+
+  describe('contains Success', function(){
+
+    beforeEach(inject(function () {
+      localStorage.setItem('recentItems', JSON.stringify([
+          {object: {'Id': '01'}, type: 'Account'},
+          {object: {'Id': '02'}, type: 'Account'},
+          {object: {'Id': '03'}, type: 'Account'}
+        ]));
+    }));
+
+    it('should return item if it exists', function(){
+      var res = RecentItemsService.contains('01');
+      expect(res.object.Id).toBe("01");
+    });
+
+    it('should return false if item does NOT exists', function(){
+      var res = RecentItemsService.contains('duff');
+      expect(res).toBe(false);
+    });
+
+  });
 });
