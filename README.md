@@ -98,7 +98,7 @@ var object = {
 	Name: 'MobileCaddy'
 };
 
-RecentItemsService.addRecentItem('Account', object);
+RecentItemsService.addRecentItem( 'Account', object );
 
 ```
 
@@ -123,13 +123,19 @@ getRecentItems( type, amount, config );
 
 An array of recent item objects.
 
-#### Example ####
+#### Examples ####
 
-With this call we would get the two most recent items of type Account that don't include configuration information, such as icon and href.
+Get the two most recent items of type Account that don't include configuration information, such as icon and href.
 
 ```
-var recentItems = RecentItemsService.getRecentItems('Account', 2);
-console.log("Recent items array", recentItems);
+var recentItems = RecentItemsService.getRecentItems( 'Account', 2 );
+
+```
+
+Get all recentItems for all types, and include configuration information, such as icon and href.
+
+```
+var recentItems = RecentItemsService.getRecentItems( null, null true );
 
 ```
 
@@ -149,7 +155,7 @@ clearRecentItems( type );
 ```
 RecentItemsService.clearRecentItems();
 
-RecentItemsService.clearRecentItems('Account');
+RecentItemsService.clearRecentItems( 'Account' );
 
 ```
 
@@ -173,7 +179,7 @@ The matching object, or false if not found.
 #### Examples ####
 
 ```
-RecentItemsService.contains("AB123CD456EF789");
+RecentItemsService.contains( 'AB123CD456EF789' );
 
 ```
 
@@ -197,6 +203,6 @@ true if object was found, false if not.
 #### Examples ####
 
 ```
-RecentItemsService.removeItem("AB123CD456EF789");
+RecentItemsService.removeItem( 'AB123CD456EF789' );
 
 ```
