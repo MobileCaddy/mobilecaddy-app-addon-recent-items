@@ -27,7 +27,9 @@
       getMaxItems: getMaxItems,
       addRecentItem: addRecentItem,
       getRecentItems: getRecentItems,
-      clearRecentItems: clearRecentItems
+      removeItem: removeItem,
+      clearRecentItems: clearRecentItems,
+      contains: contains
     };
 
     /**
@@ -96,13 +98,13 @@
       var maxRecentItems = getMaxItems();
 
       // if (encryptedStore === false){
-        var recentItems = JSON.parse(localStorage.getItem("recentItems"));
+        var recentItems = JSON.parse(localStorage.getItem(recentItemsKey));
         if(recentItems === null){
           recentItems = [];
         }
         var newItem = {
-          "type": type,
-          "object": object
+          'type': type,
+          'object': object
         };
 
         //Checking if the new item already exists in the list, in that case,
@@ -124,7 +126,7 @@
         if (recentItems.length > maxRecentItems){
           recentItems.shift();
         }
-        localStorage.setItem("recentItems", JSON.stringify(recentItems));
+        localStorage.setItem(recentItemsKey, JSON.stringify(recentItems));
       // }
     }
 
@@ -140,7 +142,10 @@
     * @description It returns an array of recent items
     **/
     function getRecentItems(type, amount, config){
-      var recentItems = JSON.parse(localStorage.getItem("recentItems"));
+      var recentItems = JSON.parse(localStorage.getItem(recentItemsKey));
+
+      if ( !recentItems ) return [];
+
       var items;
       if (!type){
         items = recentItems;
@@ -171,6 +176,28 @@
       //the correct order when the array is looped, it needs to be reversed
       return items.reverse();
     }
+
+
+    /**
+     * Removes an item.
+     * @param  {string} Id If od the object.
+     * @return {boolea}    true if item found, false if not.
+     */
+    function removeItem(Id) {
+      var recentItems = JSON.parse(localStorage.getItem(recentItemsKey));
+      var matchFound = false;
+      var recentItems2 = recentItems.filter(el => {
+        if (el.object.Id == Id) {
+          matchFound = true;
+          return false;
+        } else {
+          return true;
+        }
+      });
+      localStorage.setItem(recentItemsKey, JSON.stringify(recentItems2));
+      return matchFound;
+    }
+
 
     /**
     * @function enrichItem
@@ -217,7 +244,7 @@
         } else {
           //If at least one idName wasn't found, set the status message
           //so that the developer knows what happened
-          item.status = "At least one id of the href was not found";
+          item.status = 'At least one id of the href was not found';
           break;
         }
       }
@@ -277,6 +304,19 @@
         });
         localStorage.setItem(recentItemsKey, JSON.stringify(filteredRecentItems));
       }
+    }
+
+    /**
+     * Checks to see if an item with id exists, if so return it, if not return false
+     * @param  {string} id Id of the object to look for.
+     * @return {object}    Matching recentItem object | false.
+     */
+    function contains(id) {
+      var recentItems = JSON.parse(localStorage.getItem(recentItemsKey));
+      var match = recentItems.find(el =>{
+        return el.object.Id == id;
+      });
+      return (match) ? match : false;
     }
   }
   })();
